@@ -1,0 +1,4 @@
+{
+    "routes": [{"src": "/api" ,"dest": "/bb"}],
+    "regions": ["hkg1"]
+}

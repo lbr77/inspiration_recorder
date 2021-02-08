@@ -12,6 +12,7 @@ reload(sys)
 appid = getenv("APPID")
 masterkey = getenv("MASTERKEY")
 classname = getenv("CLASS")
+passwd = getenv("PASSWORD")
 def tostr(text):
     return b64decode(b64encode(text)).decode('utf-8').strip("'")
 class handler(BaseHTTPRequestHandler):
@@ -41,19 +42,18 @@ class handler(BaseHTTPRequestHandler):
             self.send_error(502,"Environment Varibles Error")
             return
         try:
-            lc.init(appid,master_key=masterkey)
             postar = self.parse_POST()
-            Content = lc.Object.extend(classname)
-            content = Content()
-            print(postar)
-            content.set("content",postar["content"][0])
-            content.save()
+            if passwd==postar["password"][0]:
+                lc.init(appid,master_key=masterkey)
+                Content = lc.Object.extend(classname)
+                content = Content()
+                print(postar)
+                content.set("content",postar["content"][0])
+                content.save()
+            else:
+                self.send_error(502,"Password Error")
         except Exception as e:
-            print("QwQ")
-            self.send_response(502)
-            self.send_header("Content-Type","application/json; charset=utf-8")
-            self.end_headers()
-            self.wfile.write('{"status": "failed"}'.encode())
+            self.send_error(502,str(e))
             print(e)
             return
         finally:

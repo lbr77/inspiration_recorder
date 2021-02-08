@@ -7,3 +7,5 @@
 
 于是我想到了[Vercel](https://vercel.com)
 
+### 配置
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/lbr77/ipcounter)
