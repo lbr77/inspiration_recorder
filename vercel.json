@@ -1,4 +1,1 @@
-{
-    "routes": [{"src": "/api" ,"dest": "/bb"}],
-    "regions": ["hkg1"]
-}
+{"routes": [{"src": "/api" ,"dest": "/bb"}],"regions": ["hkg1"]}
